@@ -14,6 +14,7 @@ nfs_server := $(shell sqlite3 $(hdb) "select hostname from hosts where node_id=0
 OK : /etc/fstab
 
 /etc/fstab : $(fstab)
-	$(kv_merge) /etc/fstab $(fstab) | sed s/%nfs_server%/$(nfs_server)/g > new_etc_fstab
+	sed s/%nfs_server%/$(nfs_server)/g $(fstab) > add_etc_fstab
+	$(kv_merge) /etc/fstab add_etc_fstab > new_etc_fstab
 	$(inst) new_etc_fstab /etc/fstab
 	mount -a
