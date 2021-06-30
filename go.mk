@@ -1,7 +1,7 @@
 #
 # go.mk
 #
-this_repo_url := https://github.com/taura/build_env.git
+this_repo_url := https://github.com/mdx-jp/machine-configs.git
 git_dir := $(shell basename $(shell pwd) .git)
 
 user := mdxuser

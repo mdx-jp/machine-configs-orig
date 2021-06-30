@@ -1,4 +1,4 @@
-# build_env
+# machine-configs
 
 This is a git repo to configure multiple VM instances of mdx
 
@@ -9,12 +9,12 @@ This is a git repo to configure multiple VM instances of mdx
 1. git clone this repo, under /tmp
 ```
 cd /tmp
-git clone https://github.com/taura/build_env.git
+git clone https://github.com/mdx-jp/machine-configs.git
 ```
 
 4. configure hosts, users and packages
 ```
-cd build_env/data
+cd machine-configs/data
 cp -p hosts.csv.template hosts.csv
 cp -p users.csv.template users.csv
 cp -p packages.csv.template packages.csv
@@ -23,7 +23,7 @@ and edit csv files as you need them. At minimum, you need to list IP addresses o
 
 5. GO!
 ```
-cd /tmp/build_env
+cd /tmp/machine-configs
 sudo apt install make sqlite3 # I wish them to be included in the template
 make -f go.mk -j 10
 ```
