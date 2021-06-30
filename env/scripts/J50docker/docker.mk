@@ -16,3 +16,5 @@ OK : /usr/bin/docker
 /usr/bin/docker : /usr/share/keyrings/docker-archive-keyring.gpg /etc/apt/sources.list.d/docker.list
 	$(apt) update
 	$(apt) install docker-ce docker-ce-cli containerd.io
+
+.DELETE_ON_ERROR:
