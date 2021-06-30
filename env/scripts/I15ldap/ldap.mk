@@ -24,16 +24,20 @@ ldif/dump.ldif : ldif/dump.ldif.template
 ldap_server : ldif/config.ldif ldif/dump.ldif
 	$(aptinst) slapd ldap-utils
 	service slapd stop
-	rm -rf /etc/ldap/slapd.d
-	mkdir -m 700 /etc/ldap/slapd.d
-	rm -rf /var/lib/ldap
-	mkdir -m 700 /var/lib/ldap
+	mkdir -p -m 700 /etc/ldap/slapd.d
+	mkdir -p -m 700 /var/lib/ldap
 	slapadd -n0 -F /etc/ldap/slapd.d -l ldif/config.ldif
 	slapadd -l ldif/dump.ldif
 	chown -R openldap:openldap /etc/ldap/slapd.d
 	chown -R openldap:openldap /var/lib/ldap
 	service slapd start
 	touch $@
+
+# this erases all info on the server including user account info
+# do this only when you really reset it and do everything from scratch
+erase_ldap_server_database :
+	rm -rf /etc/ldap/slapd.d
+	rm -rf /var/lib/ldap
 
 conf/ldap.conf : conf/ldap.conf.template $(hdb)
 	sed -e "s/%host_fqdn%/$(host_fqdn)/g" -e "s/%host_dc%/$(host_dc)/g" -e "s/%host_only%/$(host_only)/g" conf/ldap.conf.template > conf/ldap.conf
