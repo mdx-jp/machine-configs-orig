@@ -1,0 +1,4 @@
+date,user,uid,grp,gid,home,mod,sudo,pwd,sha_pwd,pubkey
+,opam,9000,opam,9000,/home/opam,755,1,,,
+,u10000,10000,u10000,10000,/home/u10000,750,1,,,
+,u10001,10001,u10001,10001,/home/u10001,750,0,,,
